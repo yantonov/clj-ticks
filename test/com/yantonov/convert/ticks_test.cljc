@@ -1,6 +1,7 @@
 (ns com.yantonov.convert.ticks-test
-  (:use clojure.test
-        com.yantonov.convert.ticks))
+  (:use com.yantonov.convert.ticks)
+  (:require #?(:clj [clojure.test :refer :all]
+               :cljs [cljs.test :refer-macros [deftest testing is are]])))
 
 (deftest ticks-test
   (are [y m d expected-ticks]
@@ -21,7 +22,8 @@
 
 (deftest to-datetime-test
   (are [y m d]
-      (let [[actual-y actual-m actual-d hh mm ss ms] (to-datetime (ticks y m d))]
+      (let [[actual-y actual-m actual-d hh mm ss ms]
+            (to-datetime (ticks y m d))]
         (and (= y actual-y)
              (= m actual-m)
              (= d actual-d)))

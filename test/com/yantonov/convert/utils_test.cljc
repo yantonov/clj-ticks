@@ -1,6 +1,7 @@
 (ns com.yantonov.convert.utils-test
   (:require [com.yantonov.convert.utils :refer :all]
-            [clojure.test :refer :all]))
+            #?(:clj [clojure.test :refer :all]
+               :cljs [cljs.test :refer-macros [deftest testing is are]])))
 
 (deftest is-leap-test
   (are [year verdict]
