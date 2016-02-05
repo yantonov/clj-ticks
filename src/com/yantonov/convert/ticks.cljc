@@ -7,7 +7,7 @@
    (ticks (utils/now)))
   ([date-time]
    (let [[y m d h m s ms] (utils/to-date-parts date-time)]
-     (ticks y (inc m) d h m s ms)))
+     (ticks y m d h m s ms)))
   ([year month day]
    (* (utils/absolute-day-index year month day) 24 60 60 utils/tick))
   ([year month day hour minute]

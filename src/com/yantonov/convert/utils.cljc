@@ -92,21 +92,23 @@
 (defn to-date-parts [;;#?(:clj ^java.time.LocalDateTime)
                      date-time]
   #?(:clj (let [y (. date-time getYear)
-                m (. date-time getMonth)
+                m (-> date-time
+                      (.getMonth)
+                      (.getValue))
                 d (. date-time getDayOfMonth)
-                h (. date-time getHour)
-                m (. date-time getMinute)
-                s (. date-time getSeconds)
-                ms (quot (. date-time getNanoseconds) 1000)]
-            [y m d h m s ms])
+                hh (. date-time getHour)
+                mm (. date-time getMinute)
+                ss (. date-time getSecond)
+                ms (quot (. date-time getNano) 1000)]
+            [y m d hh mm ss ms])
      :cljs (let [y (.getFullYear date-time)
                  m (.getMonth date-time)
-                 d (.getDay date-time)
-                 h (.getHours date-time)
-                 m (.getMinutes date-time)
-                 s (.getSeconds date-time)
+                 d (.getDate date-time)
+                 hh (.getHours date-time)
+                 mm (.getMinutes date-time)
+                 ss (.getSeconds date-time)
                  ms (.getMilliseconds date-time)]
-             [y m d h m s ms])))
+             [y (inc m) d hh mm ss ms])))
 
 (defn from-date-parts [y m d hh mm ss ms]
   #?(:clj (java.time.LocalDateTime/of y m d hh mm ss (* ms 1000))
