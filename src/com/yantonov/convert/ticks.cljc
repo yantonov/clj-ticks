@@ -4,15 +4,9 @@
 (defn ticks
   "Returns number of 100 nanosecond intervals from 1 january 0001."
   ([]
-   (ticks (java.time.LocalDateTime/now)))
-  ([^java.time.LocalDateTime dateTime]
-   (let [y (. dateTime getYear)
-         m (. dateTime getMonth)
-         d (. dateTime getDayOfMonth)
-         h (. dateTime getHour)
-         m (. dateTime getMinute)
-         s (. dateTime getSeconds)
-         ms (quot (. dateTime getNanoseconds) 1000)]
+   (ticks (utils/now)))
+  ([date-time]
+   (let [[y m d h m s ms] (utils/to-date-parts date-time)]
      (ticks y (inc m) d h m s ms)))
   ([year month day]
    (* (utils/absolute-day-index year month day) 24 60 60 utils/tick))
@@ -38,4 +32,4 @@
   "Convert ticks to calendar"
   [ticks]
   (let [[y m d hh mm ss ms] (to-datetime ticks)]
-    (java.time.LocalDateTime/of y m d hh mm ss (* ms 1000))))
+    (utils/from-date-parts y m d hh mm ss ms)))

@@ -88,3 +88,31 @@
         rem-s (- rem-m (* s tick))
         ms (quot rem-s (quot tick 1000))]
     [h m s ms]))
+
+(defn to-date-parts [;;#?(:clj ^java.time.LocalDateTime)
+                     date-time]
+  #?(:clj (let [y (. date-time getYear)
+                m (. date-time getMonth)
+                d (. date-time getDayOfMonth)
+                h (. date-time getHour)
+                m (. date-time getMinute)
+                s (. date-time getSeconds)
+                ms (quot (. date-time getNanoseconds) 1000)]
+            [y m d h m s ms])
+     :cljs (let [y (.getFullYear date-time)
+                 m (.getMonth date-time)
+                 d (.getDay date-time)
+                 h (.getHours date-time)
+                 m (.getMinutes date-time)
+                 s (.getSeconds date-time)
+                 ms (.getMilliseconds date-time)]
+             [y m d h m s ms])))
+
+(defn from-date-parts [y m d hh mm ss ms]
+  #?(:clj (java.time.LocalDateTime/of y m d hh mm ss (* ms 1000))
+     :cljs (js/Date. y (dec m) d hh mm ss ms)))
+
+(defn now []
+  "returns current date time"
+  #?(:clj (java.time.LocalDateTime/now)
+     :cljs (js/Date.)))
