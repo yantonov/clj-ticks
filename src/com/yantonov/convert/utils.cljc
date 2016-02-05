@@ -1,4 +1,4 @@
-(ns com.convert.utils)
+(ns com.yantonov.convert.utils)
 
 (def tick 10000000) ;; single tick represents one hundred nanoseconds
 (def ticks-per-minute (* 60 tick))

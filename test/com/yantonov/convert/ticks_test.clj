@@ -1,6 +1,6 @@
-(ns com.convert.ticks-test
+(ns com.yantonov.convert.ticks-test
   (:use clojure.test
-        com.convert.ticks))
+        com.yantonov.convert.ticks))
 
 (deftest ticks-test
   (are [y m d expected-ticks]
