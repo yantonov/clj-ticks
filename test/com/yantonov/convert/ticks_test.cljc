@@ -1,8 +1,8 @@
 (ns com.yantonov.convert.ticks-test
   (:require [com.yantonov.convert.ticks :as ticks]
             [com.yantonov.convert.utils :as utils]
-            #?(:clj [clojure.test :refer :all])
-            #?(:cljs [cljs.test :refer-macros [deftest is are]])))
+            #?(:clj [clojure.test :refer :all]
+               :cljs [cljs.test :refer-macros [deftest is are]])))
 
 (deftest ticks-test
   (are [y m d expected-ticks]
