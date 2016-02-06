@@ -21,7 +21,7 @@
       (= expected-ticks (ticks/ticks y m d hh mm ss ms))
     2013 2 23 23 46 37 918 634972599979180000))
 
-(deftest to-datetime-test
+(deftest to-datetime-date-test
   (are [y m d]
       (let [[actual-y actual-m actual-d hh mm ss ms]
             (ticks/to-datetime (ticks/ticks y m d))]
@@ -61,7 +61,7 @@
     1991 9  1
     2012 4  1))
 
-(deftest to-datetime-test
+(deftest to-datetime-time-test
   (are [h m s ms]
       (let [tick (ticks/ticks 2014 6 1 h m s ms)
             [_ _ _
