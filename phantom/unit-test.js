@@ -24,7 +24,7 @@ page.open(url, function (status) {
     console.log("Running test.");
 
     var result = page.evaluate(function() {
-        return test_runner.runner();
+        return com.test_runner.runner();
     });
 
     if (result != 0) {
@@ -32,8 +32,8 @@ page.open(url, function (status) {
         exit(1);
     }
     else {
-	console.log("Test succeeded.");
-	exit(0);
+    console.log("Test succeeded.");
+    exit(0);
     }
 
 });

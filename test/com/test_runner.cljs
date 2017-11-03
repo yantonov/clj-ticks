@@ -1,4 +1,4 @@
-(ns test-runner
+(ns com.test-runner
   (:require [cljs.test :refer-macros [run-tests]]
             [com.yantonov.convert.ticks-test]
             [com.yantonov.convert.utils-test]))
